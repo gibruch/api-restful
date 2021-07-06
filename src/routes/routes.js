@@ -16,6 +16,6 @@ const ProductController = require('../controllers/products')
 router.get('/products/:id?', ProductController.get) // [?] com interogacao no final - parametro opcional 
 router.post('/products', ProductController.post)
 router.put('/products/:id', ProductController.put)
-// router.delete('/products/:id', ProductController.delete)
+router.delete('/products/:id', ProductController.remove) // delete
 
 module.exports = router
