@@ -15,6 +15,7 @@ const ProductController = require('../controllers/products')
 // definindo rota : products
 router.get('/products/:id?', ProductController.get) // [?] com interogacao no final - parametro opcional 
 router.post('/products', ProductController.post)
-// router.put('/products/:id', ProductController.put)
+router.put('/products/:id', ProductController.put)
 // router.delete('/products/:id', ProductController.delete)
+
 module.exports = router
