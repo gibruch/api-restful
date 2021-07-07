@@ -1,5 +1,5 @@
 const express = require('express')
-//const path = require('path')
+const cors = require('cors')
 
 const db = require('./database/db')
 const routes = require('./routes/routes')
@@ -9,6 +9,25 @@ const app = express()
 // concexao com o banco de dados
 db.connect()
 
+//para liberar mais enderecos
+const allowedOrigins = [
+    'http://127.0.0.1:5500',
+    'http://wwww.app.com.br',
+]
+// habilita CORS - para limitar deve ser passado um objeto com o endereço do api
+app.use(cors({
+    //origin: 'http://127.0.0.1:5500' // apenas um endereco
+    origin: function(origin, callback) {
+        let allowed = true
+        
+        //mobile app - vem sem origin
+        if (!origin) allowed = true
+
+        if (!allowedOrigins.includes(origin)) allowed = false
+
+        callback(null, allowed)
+    }
+}))
 //habilita server para receber dados via post (formulario)
 //app.use(express.urlencoded({ extended: true }))
 
